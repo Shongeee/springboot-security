@@ -9,11 +9,11 @@ server:
       force-response: true
   tomcat:
     uri-encoding: UTF-8
-    
+
 spring:
 #  security:
 #    user:
-#     name: test
+#      name: test
 #      password: 1234
   mvc:
     static-path-pattern: /static/**

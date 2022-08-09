@@ -20,18 +20,22 @@ public class User {
 	private String user_id;
 	private String user_password;
 	private String user_roles;				// ROLE_USER,ROLE_ADMIN,ROLE_MANAGER
-	private String user_providers;
+	private String user_provider;
 	private String user_profile_img;
 	private String user_address;
 	private String user_phone;
 	private int user_gender;
 	
 	public List<String> getUserRoles() {
-		if(user_roles == null) {
+		if(user_roles == null || user_roles.isBlank()) {
 			return new ArrayList<String>();
 		}
-		return Arrays.asList(user_roles.split(","));
+		return Arrays.asList(user_roles.replaceAll(" ", "").split(","));
 	}
-	
-	
 }
+
+
+
+
+
+

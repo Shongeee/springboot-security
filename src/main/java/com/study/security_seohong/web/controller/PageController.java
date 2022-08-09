@@ -21,9 +21,16 @@ public class PageController {
 		return "auth/signup";
 	}
 	
-	
 	@GetMapping("/mypage")
 	public String loadMyPage() {
 		return "mypage";
 	}
+		
 }
+
+
+
+
+
+
+

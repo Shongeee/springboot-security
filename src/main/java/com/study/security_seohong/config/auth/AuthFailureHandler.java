@@ -11,8 +11,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
+import com.study.security_seohong.handler.aop.annotation.Log;
+
 public class AuthFailureHandler implements AuthenticationFailureHandler {
 
+	@Log
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {

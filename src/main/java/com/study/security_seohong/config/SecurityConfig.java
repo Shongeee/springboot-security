@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.study.security_seohong.config.auth.AuthFailureHandler;
+import com.study.security_seohong.handler.aop.annotation.Log;
 
 @EnableWebSecurity //기존의 WebSecurityConfigurerAdapter를 비활성 시키고 현재 시큐리티 설정을 따르겠다.
 @Configuration
@@ -18,6 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
+	@Log
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();

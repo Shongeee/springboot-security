@@ -18,7 +18,7 @@ inputs[2].onblur = () => {
 		dataType: "json",
 		success: (response) => {
 			checkUsernameFlag = response.data;
-			
+			console.log(response.data);
 			if(checkUsernameFlag) {
 				alert("사용 가능한 아이디입니다.")
 			}else {

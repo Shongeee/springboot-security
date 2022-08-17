@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.study.security_seohong.handler.aop.annotation.ValidCheck;
 import com.study.security_seohong.handler.aop.annotation.ValidCheck2;
 import com.study.security_seohong.handler.exception.CustomValidationApiException;
 import com.study.security_seohong.service.auth.AuthService;
+import com.study.security_seohong.service.auth.PrincipalDetails;
 import com.study.security_seohong.service.auth.PrincipalDetailsService;
 import com.study.security_seohong.web.dto.CMRespDto;
 import com.study.security_seohong.web.dto.auth.SignupReqDto;
@@ -30,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-public class AuthController {
+public class AuthRestController {
 	
 	private final PrincipalDetailsService principalDetailsService;
 	private final AuthService authService;
@@ -86,6 +88,14 @@ public class AuthController {
 		}
 		
 		return ResponseEntity.ok(new CMRespDto<>(1, "회원가입 성공", status));
+	}
+	
+	@GetMapping("/principal")
+	public ResponseEntity<?> getPrincipal(@AuthenticationPrincipal PrincipalDetails principalDetails){
+		if(principalDetails == null) {
+			return ResponseEntity.badRequest().body(new CMRespDto<>(-1, "principal is null", null));
+		}
+		return ResponseEntity.ok(new CMRespDto<>(1, "success load", principalDetails.getUser()));
 	}
 	
 }

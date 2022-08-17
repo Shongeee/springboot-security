@@ -9,10 +9,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.study.security_seohong.config.auth.AuthFailureHandler;
 import com.study.security_seohong.handler.aop.annotation.Log;
+import com.study.security_seohong.service.auth.PrincipalOauth2UserService;
+
+import lombok.RequiredArgsConstructor;
 
 @EnableWebSecurity //기존의 WebSecurityConfigurerAdapter를 비활성 시키고 현재 시큐리티 설정을 따르겠다.
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	private final PrincipalOauth2UserService principalOauth2UserService;
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -45,6 +51,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginPage("/auth/signin") 							// 로그인 페이지는 해당 get요청을 통해 접근한다.
 			.loginProcessingUrl("/auth/signin")					// 로그인 요청(post요청)
 			.failureHandler(new AuthFailureHandler())
+			
+			.and()
+			
+			.oauth2Login()
+			.userInfoEndpoint()
+			/*
+			 * 1. google, naver, kakao, 로그인 요청 -> 코드를 발급하여줌.
+			 * 2. 발급받은 코드를 가진 상태로 권한요청(토큰발급요청)을 함.
+			 * 3. 스코프에 등록된 프로필 정보를 가져올 수 있게됨.
+			 * 4. 해당 정보를 시큐리티의 객체로 전달받음.
+			 */
+			.userService(principalOauth2UserService)
+			
+			.and()
+			.failureHandler(null)
 			.defaultSuccessUrl("/index");
 	}
 	

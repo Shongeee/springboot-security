@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.filter.CorsFilter;
 
 import com.study.security_seohong.config.auth.AuthFailureHandler;
 import com.study.security_seohong.handler.aop.annotation.Log;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	private final CorsFilter corsFilter;
 	private final PrincipalOauth2UserService principalOauth2UserService;
 	
 	@Bean
@@ -29,6 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
+		http.addFilter(corsFilter); //cors 인증을 하지 않겠다.
+		http.headers().frameOptions().sameOrigin();
 		http.authorizeRequests()
 			.antMatchers("/api/v1/grant/test/user/**")
 			.access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")

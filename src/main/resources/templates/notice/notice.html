@@ -1,26 +1,16 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항</title>
-    <link href="/static/css/reset.css" rel="stylesheet">
-    <link href="/static/css/notice-header.css" rel="stylesheet">
+	<th:block th:replace="/fragments/head"></th:block>
     <link href="/static/css/notice.css" rel="stylesheet">
     <link href="/static/css/notice-list.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <button class="nav-list" type="button">홈</button>
-            <button class="nav-list" type="button">공지사항</button>
-        </nav>
-        <div class="auth-items">
-            <button class="auth-button signin" type="button">로그인</button>
-            <button class="auth-button signup" type="button">회원가입</button>
-        </div>
-    </header>
+    <th:block th:replace="/fragments/header"></th:block>
     <main>
         <div class="notice-header">
             <h1 class="menu-title">공지사항</h1>
@@ -52,15 +42,18 @@
                 </tr>
             </table>
         </article>
-        <div class="page-buttons">
-            <button class="page-button" type="button">&lt;</button>
-            <button class="page-button" type="button">1</button>
-            <button class="page-button" type="button">2</button>
-            <button class="page-button" type="button">3</button>
-            <button class="page-button" type="button">4</button>
-            <button class="page-button" type="button">5</button>
-            <button class="page-button" type="button">&gt;</button>
+        <div class="list-footer">
+	        <div class="page-buttons">
+	            <button class="page-button" type="button">&lt;</button>
+	            <button class="page-button" type="button">1</button>
+	            <button class="page-button" type="button">2</button>
+	            <button class="page-button" type="button">3</button>
+	            <button class="page-button" type="button">4</button>
+	            <button class="page-button" type="button">5</button>
+	            <button class="page-button" type="button">&gt;</button>
+	        </div>
         </div>
     </main>
+    <script type="text/javascript" src=/static/js/notice/notice-list.js></script>
 </body>
 </html>

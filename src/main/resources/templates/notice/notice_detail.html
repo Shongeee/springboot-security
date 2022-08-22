@@ -1,26 +1,16 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <link href="/static/css/reset.css" rel="stylesheet">
-    <link href="/static/css/notice-header.css" rel="stylesheet">
+    <th:block th:replace="/fragments/head"></th:block>
     <link href="/static/css/notice.css" rel="stylesheet">
     <link href="/static/css/notice-detail.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <button class="nav-list" type="button">홈</button>
-            <button class="nav-list" type="button">공지사항</button>
-        </nav>
-        <div class="auth-items">
-            <button class="auth-button signin" type="button">로그인</button>
-            <button class="auth-button signup" type="button">회원가입</button>
-        </div>
-    </header>
+    <th:block th:replace="/fragments/header"></th:block>
     <main>
         <div class="notice-header">
             <h1 class="menu-title">공지사항</h1>

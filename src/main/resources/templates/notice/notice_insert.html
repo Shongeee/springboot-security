@@ -1,27 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 작성</title>
-    <link href="/static/css/reset.css" rel="stylesheet">
-    <link href="/static/css/notice-header.css" rel="stylesheet">
+    <th:block th:replace="/fragments/head"></th:block>
     <link href="/static/css/notice.css" rel="stylesheet">
     <link href="/static/css/notice-insert.css" rel="stylesheet">
     <script src="/static/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <button class="nav-list" type="button">홈</button>
-            <button class="nav-list" type="button">공지사항</button>
-        </nav>
-        <div class="auth-items">
-            <button class="auth-button signin" type="button">로그인</button>
-            <button class="auth-button signup" type="button">회원가입</button>
-        </div>
-    </header>
+    <th:block th:replace="/fragments/header"></th:block>
     <main>
         <div class="notice-header">
             <h1 class="menu-title">새로운 글 작성</h1>
@@ -31,7 +21,7 @@
                 <table class="notice-list">
                     <tr class="notice-row">
                         <th>제목</th>
-                        <td><input type="text" class="notice-title"></td>
+                        <td><input type="text" class="notice-title" name="noticeTitle"></td>
                     </tr>
                     <tr class="notice-row">
                         <td colspan="2">
@@ -40,7 +30,7 @@
                     </tr>
                     <tr class="notice-row">
                         <td colspan="2">
-                            <input type="file">
+                            <input type="file" class="notice-file" name="file">
                         </td>
                     </tr>
                     <tr class="notice-row">
@@ -53,23 +43,6 @@
             </form>
         </article>
     </main>
-    <script type="text/javascript">
-        let oEditors = [];
-        nhn.husky.EZCreator.createInIFrame({
-         oAppRef: oEditors,
-         elPlaceHolder: "ir1",
-         sSkinURI: "/static/SmartEditor2Skin.html",
-         fCreator: "createSEditor2"
-        });
-
-        const submitButton = document.querySelector(".submit");
-        
-        submitButton.addEventListener('click', function(){
-            /* editor의 내용을 textarea로 옮겨주는 역할 */
-            oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
-            const textareaValue = document.querySelector("#ir1").value;
-            alert(textareaValue);
-        })
-    </script>
+    <script type="text/javascript" src="/static/js/notice/notice-insert.js"></script>
 </body>
 </html>

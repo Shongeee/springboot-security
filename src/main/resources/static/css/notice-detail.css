@@ -1,12 +1,12 @@
 .notice-detail-header{display: flex; flex-direction: column; border-bottom: 3px solid #dbdbdb; padding: 0 10px 10px}
-.notice-detail-title{font-size: 30px; font-weight: 600;}
+.notice-detail-title{font-size: 30px; font-weight: 600; margin-bottom: 20px}
 
 .notice-detail-description{align-self: flex-end; display: flex; gap: 20px;}
 .notice-detail-description h3{font-weight: 500;}
 .notice-detail-description h3 span{font-weight: 600; margin-right: 8px;}
 
 .notice-content{padding: 30px 10px; border-bottom: 1px solid #dbdbdb; min-height: 400px;}
-.notice-content>p, .notice-content>b, .notice-content>i{line-height: 1.5;}
+.notice-content>p, .notice-content>b, .notice-content>i{line-height: 1.8;}
 
 .notice-file{padding: 10px; border-bottom: 3px solid #dbdbdb; display: flex;}
 .notice-file h3{margin-right: 15px; font-weight: 600; font-size: 14px;}

@@ -29,7 +29,7 @@ function loadHeader(user) {
 		const signup = document.querySelector(".signup");
 		
 		signin.onclick = () => {
-			location.href = "auth/signin";
+			location.href = "/auth/signin";
 		}
 		
 		signup.onclick = () => {
